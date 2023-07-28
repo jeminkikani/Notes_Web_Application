@@ -1,7 +1,4 @@
-# Notes-NodeJs-CRUD-MongoDB
-
-## Udates
-[x] Fixed Mongoose Notes Query Issue 7.0.0
+# Notes_NodeJs_Web_Application_CRUD_MongoDB
 
 ## You need:
 - Database (MongoDB)
