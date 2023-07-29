@@ -51,22 +51,21 @@ router.get(
 );
 
 // Route if something goes wrong
-router.get('/login-failure', (req, res) => {
-  res.send('Something went wrong...');
+router.get("/login-failure", (req, res) => {
+  res.send("Something went wrong...");
 });
 
 // Destroy user session
-router.get('/logout', (req, res) => {
-  req.session.destroy(error => {
-    if(error) {
+router.get("/logout", (req, res) => {
+  req.session.destroy((error) => {
+    if (error) {
       console.log(error);
-      res.send('Error loggin out');
+      res.send("Error loggin out");
     } else {
-      res.redirect('/')
+      res.redirect("/");
     }
-  })
+  });
 });
-
 
 // Presist user data after successful authentication
 passport.serializeUser(function (user, done) {
@@ -79,8 +78,5 @@ passport.deserializeUser(function (id, done) {
     done(err, user);
   });
 });
-
-
-
 
 module.exports = router;

@@ -6,7 +6,6 @@ const mongoose = require("mongoose");
  * Dashboard
  */
 exports.dashboard = async (req, res) => {
-
   let perPage = 12;
   let page = req.query.page || 1;
 
@@ -25,23 +24,23 @@ exports.dashboard = async (req, res) => {
           title: { $substr: ["$title", 0, 30] },
           body: { $substr: ["$body", 0, 100] },
         },
-      }
-      ])
-    .skip(perPage * page - perPage)
-    .limit(perPage)
-    .exec(); 
+      },
+    ])
+      .skip(perPage * page - perPage)
+      .limit(perPage)
+      .exec();
 
     const count = await Note.count();
 
-    res.render('dashboard/index', {
+    res.render("dashboard/index", {
       userName: req.user.firstName,
       locals,
       notes,
       layout: "../views/layouts/dashboard",
       current: page,
-      pages: Math.ceil(count / perPage)
+      pages: Math.ceil(count / perPage),
     });
- 
+
     // Original Code
     // Note.aggregate([
     //   { $sort: { updatedAt: -1 } },
@@ -68,7 +67,6 @@ exports.dashboard = async (req, res) => {
     //       });
     //     });
     //   });
-
   } catch (error) {
     console.log(error);
   }
